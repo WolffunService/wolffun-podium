@@ -64,7 +64,7 @@ var _ = Describe("Leaderboard Handler", func() {
 				}
 				return fmt.Sprintf("%d", i)
 			}
-			year, week               = time.Now().UTC().AddDate(0, 0, -15).ISOWeek()
+			year, week               = time.Now().UTC().AddDate(0, 0, -22).ISOWeek()
 			lastQuarter, quarterYear = func() (int, int) {
 				quarter := int(time.Now().UTC().Month()-1)/3 + 1
 				quarterYear := time.Now().UTC().Year()
@@ -575,9 +575,9 @@ var _ = Describe("Leaderboard Handler", func() {
 			Expect(result["reason"]).To(Equal("invalid character 'h' looking for beginning of value"))
 		})
 
-		//this test has been deactivated because grpc-gateway still isn't
-		//rejecting unknown values. This was implemented on this PR:
-		//https://github.com/grpc-ecosystem/grpc-gateway/commit/d6fec188bf351df151bcf40b65d6c326fe6ebbf0
+		// this test has been deactivated because grpc-gateway still isn't
+		// rejecting unknown values. This was implemented on this PR:
+		// https://github.com/grpc-ecosystem/grpc-gateway/commit/d6fec188bf351df151bcf40b65d6c326fe6ebbf0
 		It("Should fail if missing parameters", func() {
 			Skip("Functionality still isn't available on grpc-gateway")
 			payload := map[string]interface{}{
