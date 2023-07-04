@@ -20,6 +20,13 @@ jobs:
           slave1-port: 5003
           slave2-port: 5004
           slave3-port: 5005
+      # Running Test
+      - name: Running Test
+        run: |
+          sudo apt-get install -y redis-tools
+          docker ps -a
+          redis-cli -h 127.0.0.1 -p 5000 ping
+          redis-cli -h 127.0.0.1 -p 5000 cluster nodes
       - id: go-cache-paths
         run: |
           echo "::set-output name=go-build::$(go env GOCACHE)"
